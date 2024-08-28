@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notice Board</title>
+</head>
+<body>
+    <h1>Notice Board</h1>
+    {% if logged_in %}
+        <p>Welcome {{ username }}!</p>
+        <a href="{{ url_for('main.logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url_for('main.login') }}">Login</a>
+        <a href="{{ url_for('main.register') }}">Register</a>
+    {% endif %}
+    <a href="{{ url_for('main.new_post') }}">New Post</a>
+
+    <form action="{{ url_for('main.search') }}" method="GET">
+        <select name="type">
+            <option value="title">Title</option>
+            <option value="content">Context</option>
+        </select>
+        <input type="text" name="keyword" placeholder="검색어">
+        <button type="submit">Search</button>
+    </form>
+    
+    <ul>
+        {% for post in posts %}
+            <li><a href="{{ url_for('main.post', post_id=post.id) }}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

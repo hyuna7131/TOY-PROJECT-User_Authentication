@@ -2,11 +2,6 @@ from app import db
 from flask_jwt_extended import JWTManager
 from datetime import datetime
 
-@JWTManager.user_lookup_loader
-def load_user(identity):
-    return User.query.get(int(identity))
-
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
