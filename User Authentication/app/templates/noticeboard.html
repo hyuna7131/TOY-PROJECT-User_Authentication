@@ -7,13 +7,15 @@
 <body>
     <h1>Notice Board</h1>
     {% if logged_in %}
-        <p>Welcome {{ username }}!</p>
+        <p>Welcome {{ firstname }}!</p>
         <a href="{{ url_for('main.logout') }}">Logout</a>
     {% else %}
         <a href="{{ url_for('main.login') }}">Login</a>
         <a href="{{ url_for('main.register') }}">Register</a>
     {% endif %}
-    <a href="{{ url_for('main.new_post') }}">New Post</a>
+    <br>
+    <br>
+    <a href="{{ url_for('main.post_create') }}">New Post</a>
 
     <form action="{{ url_for('main.search') }}" method="GET">
         <select name="type">

@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
+from config import Config
 
 db = SQLAlchemy()
 jwt = JWTManager()
@@ -9,11 +10,10 @@ bcrypt = Bcrypt()
 
 def create_app():
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///localhost:8000'
-    app.config['JWT_SECRET_KEY'] = 'jwt_secret_key'
-    app.config['SECRET_KEY'] = 'your_secret_key'
+    # 환경변수 세팅
+    app.config.from_object(Config)
 
-    db.init_app(app)
+    db.init_app(app) 
     jwt.init_app(app)
     bcrypt.init_app(app)
 

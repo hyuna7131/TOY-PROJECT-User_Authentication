@@ -7,11 +7,22 @@
 <body>
     <h1>Login</h1>
     <form method="POST" action="{{ url_for('main.login') }}">
-        <label for="email">Email</label>
-        <input type="email" name="email" required>
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-        <button type="submit">Login</button>
+        <table>
+            <tr>
+                <td><label for="id">ID</label></td>
+                <td><input type="text" name="id" required></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Login</button></td>
+            </tr>
+            <tr>
+                <td colspan="2"><br><a href="{{ url_for('main.noticeboard') }}">Go to home</a></td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>
