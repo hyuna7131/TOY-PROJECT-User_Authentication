@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Notice Board</h1>
+  
     {% if logged_in %}
         <p>Welcome {{ firstname }}!</p>
         <a href="{{ url_for('main.logout') }}">Logout</a>
@@ -28,7 +29,7 @@
     
     <ul>
         {% for post in posts %}
-            <li><a href="{{ url_for('main.post', post_id=post.id) }}">{{ post.title }}</a></li>
+            <li><a href="{{ url_for('main.post', index=post.index) }}">{{ post.title }}</a></li>
         {% endfor %}
     </ul>
 </body>

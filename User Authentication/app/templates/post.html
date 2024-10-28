@@ -6,18 +6,27 @@
 </head>
 <body>
     <h1>POST</h1>
-    {{}}
 
-    <p>{{ post.title }}</p>
-    <p>{{ post.content }}</p>
     {% if post.secret %}
         <p>This post is secret. Please enter the password to view the content.</p>
-    {% endif %}
-    {% if current_user == post.author %}
-        <a href="{{ url_for('main.update_post', post_id=post.id) }}">Edit</a>
-        <form method="POST" action="{{ url_for('main.delete_post', post_id=post.id) }}">
+
+        <form method="POST" action="{{ url_for('main.post', index=post.index) }}">
+            <input type="password" name="password" required>
+            <button type="submit">Submit</button>
+        </form>
+    {% else %}
+        <p>{{ post.title }}</p>
+        <p>{{ post.content }}</p>
+
+        {% if post.user_id == post.index %}
+        <a href="{{ url_for('main.post_edit', index=post.index) }}">Edit</a>
+        <form method="POST" action="{{ url_for('main.delete_post', index=post.index) }}">
             <button type="submit">Delete</button>
         </form>
+        {% endif %}
     {% endif %}
+
+    <br>
+    <a href="{{ url_for('main.noticeboard') }}">Go to home</a>
 </body>
 </html>

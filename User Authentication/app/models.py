@@ -21,9 +21,11 @@ class User(db.Model):
 class Post(db.Model):
     __tablename__ = "post"
 
-    id = db.Column(db.String(20), primary_key=True)
+    #index = db.Column(db.Integer, nullable=False, autoincrement=True)
+    #id = db.Column(db.String(20), primary_key=True, default=User.id)
+    index = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
     secret = db.Column(db.Boolean, nullable=False, default=False)
     secret_password = db.Column(db.String(60), nullable=True)
